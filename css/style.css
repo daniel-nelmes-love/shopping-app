@@ -1,7 +1,7 @@
-#app-wrap{
+#background{
 	background-image: url('../img/background.jpg');
 	background-size: cover;
-	background-position: 90%;
+	background-position: center;
 	background-repeat: no-repeat;
 	min-height: 100%;
 	min-width: 100%;
@@ -9,16 +9,23 @@
 	z-index: -1;
 }
 
+#app-wrap{
+	margin-right: -6%;
+}
+
+#app-cont{
+	margin: 0 auto;
+	width: 30rem;
+}
+
 #title-cont{
-	padding: 2rem;
+	padding: 2rem 0;
 }
 
 #title{
 	text-align: center;
 	background-color: #ff8a14;
-	width: 30rem;
 	padding: 2rem;
-	margin: 0 auto;
 }
 
 #title h1{
@@ -30,8 +37,12 @@
 	font-size: 1.2rem;
 }
 
-#app-cont{
-	margin: 0 auto;
+#clear-button{
+	background-color: #ff8a14;
+	width: 6rem;
+	padding: 0.5rem;
+	margin: 1rem 0;
+	text-align: center;
 }
 
 #list{
@@ -40,24 +51,46 @@
 
 #list li{
 	background-color: #8fd927;
-	width: 20rem;
 	padding: 1rem;
 	margin: 0 auto 1rem auto;
 	text-align: center;
 	list-style: none;
 }
 
-#list img{
+#list .delete-item{
+	height: 1.5rem;
+	float: left;
+	margin-top: -0.25rem;
+}
+
+#list .cart{
 	height: 2rem;
 	float: right;
 	margin-top: -0.5rem;
 }
 
 #title,
-#list li{
+#clear-button,
+#list li,
+#list .delete-item{
 	border-radius: 50px 50px 50px 0;
 }
 
 #list .in-cart{
 	opacity: 0.3;
 }
+
+@media (max-height: 600px){
+	#title h1{
+	font-size: 1.8rem;
+	}
+
+	#title h2{
+	font-size: 1rem;
+	}
+
+	#app-cont{
+	width: 20rem;
+	}
+}
+
