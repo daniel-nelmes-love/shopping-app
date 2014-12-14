@@ -77,10 +77,13 @@ input:focus{
 
 #title,
 input,
-#clear-button,
+#clear-button{
+	border-radius: 50px 50px 50px 0;
+}
+
 #list li,
 #list .delete-item{
-	border-radius: 50px 50px 50px 0;
+	border-radius: 0 50px 50px 50px;
 }
 
 #list .in-cart{
