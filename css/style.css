@@ -33,7 +33,7 @@
 }
 
 input{
-	width: 100%;
+	width: 99%;
 	height: 2rem;
 	background-color: #dbf0bb;
 	text-align: center;
@@ -43,12 +43,32 @@ input:focus{
     outline: 0;
 }
 
+.list-error::-webkit-input-placeholder {
+   color: #ff8a14;;
+}
+
+.list-error:-moz-placeholder {
+   color: #ff8a14;;  
+}
+
+.list-error::-moz-placeholder {
+   color: #ff8a14;;  
+}
+
+.list-error:-ms-input-placeholder {  
+   color: #ff8a14;;  
+}
+
+#add-button,
 #clear-button{
 	background-color: #ff8a14;
 	width: 6rem;
 	padding: 0.5rem;
-	margin: 1rem 0;
 	text-align: center;
+}
+
+#clear-button{
+	margin-top: 1rem;
 }
 
 #list{
@@ -57,8 +77,8 @@ input:focus{
 
 #list li{
 	background-color: #8fd927;
-	padding: 1rem;
-	margin: 0 auto 1rem auto;
+	padding: 0.5rem;
+	margin: 0 auto 0.5rem auto;
 	text-align: center;
 	list-style: none;
 }
@@ -67,12 +87,16 @@ input:focus{
 	height: 1.5rem;
 	float: left;
 	margin-top: -0.25rem;
+	margin-left: -0.25rem;
+	display: none;
 }
 
 #list .cart{
-	height: 2rem;
+	height: 1.5rem;
 	float: right;
-	margin-top: -0.5rem;
+	margin-top: -0.25rem;
+	margin-right: -0.25rem;
+	display: none;
 }
 
 #title,
@@ -81,6 +105,7 @@ input,
 	border-radius: 50px 50px 50px 0;
 }
 
+#add-button,
 #list li,
 #list .delete-item{
 	border-radius: 0 50px 50px 50px;
