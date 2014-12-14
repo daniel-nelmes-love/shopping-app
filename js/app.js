@@ -11,7 +11,7 @@ $(document).ready(function() {
 			document.getElementById('new-item').value +
 			'<img class="cart" src="img/cart.png" alt="Cart"></li>'
 		);
-		$("#new-item").attr('placeholder', "Type items here then push 'Enter' on your keyboard");
+		$("#new-item").attr('placeholder', 'Type items here then push Enter on your keyboard');
 		$('#new-item').removeClass('list-error')
 		$('#new-item').val('');
 		};

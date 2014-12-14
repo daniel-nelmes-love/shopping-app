@@ -1,3 +1,5 @@
+/*container */
+
 #background{
 	background-image: url('../img/background.jpg');
 	background-size: cover;
@@ -18,24 +20,29 @@
 	width: 30rem;
 }
 
-#title-cont{
-	padding: 2rem 0;
-}
+/* title */
 
 #title{
 	text-align: center;
-	background-color: #ff8a14;
 	padding: 2rem;
+	margin: 2rem auto;
 }
 
 #title h1{
 	font-size: 3rem;
+	padding-bottom: 1rem;
+	font-weight: bold;
 }
+
+#title h2{
+	font-size: 1.5rem;
+}
+
+/* input bar */
 
 input{
 	width: 99%;
 	height: 2rem;
-	background-color: #dbf0bb;
 	text-align: center;
 }
 
@@ -43,25 +50,10 @@ input:focus{
     outline: 0;
 }
 
-.list-error::-webkit-input-placeholder {
-   color: #ff8a14;;
-}
-
-.list-error:-moz-placeholder {
-   color: #ff8a14;;  
-}
-
-.list-error::-moz-placeholder {
-   color: #ff8a14;;  
-}
-
-.list-error:-ms-input-placeholder {  
-   color: #ff8a14;;  
-}
+/* buttons */
 
 #add-button,
 #clear-button{
-	background-color: #ff8a14;
 	width: 6rem;
 	padding: 0.5rem;
 	text-align: center;
@@ -71,19 +63,7 @@ input:focus{
 	margin-top: 1rem;
 }
 
-#list{
-	margin: 0 auto -10rem auto;
-}
-
-#list li{
-	background-color: #8fd927;
-	padding: 0.5rem;
-	margin: 0 auto 0.5rem auto;
-	text-align: center;
-	list-style: none;
-}
-
-#list .delete-item{
+.delete-item{
 	height: 1.5rem;
 	float: left;
 	margin-top: -0.25rem;
@@ -91,13 +71,32 @@ input:focus{
 	display: none;
 }
 
-#list .cart{
+.cart{
 	height: 1.5rem;
 	float: right;
 	margin-top: -0.25rem;
 	margin-right: -0.25rem;
 	display: none;
 }
+
+/* list items */
+
+#list{
+	margin: 0 auto -10rem auto;
+}
+
+#list li{
+	padding: 0.5rem;
+	margin: 0 auto 0.5rem auto;
+	text-align: center;
+	list-style: none;
+}
+
+#list .in-cart{
+	opacity: 0.3;
+}
+
+/* border radius */
 
 #title,
 input,
@@ -107,13 +106,61 @@ input,
 
 #add-button,
 #list li,
-#list .delete-item{
+.delete-item{
 	border-radius: 0 50px 50px 50px;
 }
 
-#list .in-cart{
-	opacity: 0.3;
+/* fonts */
+
+body{
+	font-family: 'Varela Round', sans-serif;
 }
+
+#title{
+	font-family: 'Amaranth', sans-serif;
+	font-weight: bold;
+	color: white;
+}
+
+#new-item::-webkit-input-placeholder {
+	font-family: 'Varela Round', sans-serif;
+	font-weight: bold;;}
+#new-item:-moz-placeholder {
+	font-family: 'Varela Round', sans-serif;
+	font-weight: bold;;}
+#new-item::-moz-placeholder {
+	font-family: 'Varela Round', sans-serif;
+	font-weight: bold;;}
+#new-item:-ms-input-placeholder {  
+	font-family: 'Varela Round', sans-serif;
+	font-weight: bold;;}
+
+/* colours */
+
+#title,
+#add-button,
+#clear-button{
+	background-color: #ff8a14;
+}
+
+input{
+	background-color: #dbf0bb;
+}
+
+#list li{
+	background-color: #8fd927;
+}
+
+.list-error::-webkit-input-placeholder {
+   color: #ff8a14;;}
+.list-error:-moz-placeholder {
+   color: #ff8a14;;}
+.list-error::-moz-placeholder {
+   color: #ff8a14;;}
+.list-error:-ms-input-placeholder {  
+   color: #ff8a14;;}
+
+/* media queries */
 
 @media (max-height: 600px){
 	#title h1{
