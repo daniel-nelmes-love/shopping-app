@@ -79,6 +79,13 @@ input:focus{
 	display: none;
 }
 
+#add-button,
+#clear-button,
+.delete-item,
+.cart{
+cursor: pointer; cursor: hand;
+}
+
 /* list items */
 
 #list{
