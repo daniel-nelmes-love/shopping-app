@@ -9,4 +9,13 @@ $(document).ready(function() {
 		};	
 	});
 
-})
+	$('.delete-item').on('click', function() {
+		$(this).closest('li').remove();
+	});
+
+	$('#clear-button').on('click', function() {
+		$('#list').find('li').remove();
+	});
+
+
+});
