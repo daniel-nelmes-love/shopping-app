@@ -64,18 +64,18 @@ input:focus{
 }
 
 .delete-item{
-	height: 1.5rem;
+	height: 2rem;
 	float: left;
-	margin-top: -0.25rem;
-	margin-left: -0.25rem;
+	margin-top: -0.5rem;
+	margin-left: -0.5rem;
 	display: none;
 }
 
 .cart{
-	height: 1.5rem;
+	height: 2rem;
 	float: right;
-	margin-top: -0.25rem;
-	margin-right: -0.25rem;
+	margin-top: -0.5rem;
+	margin-right: -0.5rem;
 	display: none;
 }
 
@@ -119,7 +119,6 @@ body{
 #title{
 	font-family: 'Amaranth', sans-serif;
 	font-weight: bold;
-	color: white;
 }
 
 #new-item::-webkit-input-placeholder {
@@ -136,6 +135,10 @@ body{
 	font-weight: bold;;}
 
 /* colours */
+
+#title{
+	color: white;
+}
 
 #title,
 #add-button,
