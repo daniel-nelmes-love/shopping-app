@@ -13,6 +13,7 @@
 
 #app-wrap{
 	margin-right: -6%;
+	padding-top: 2rem;
 }
 
 #app-cont{
@@ -25,7 +26,7 @@
 #title{
 	text-align: center;
 	padding: 2rem;
-	margin: 2rem auto;
+	margin-bottom: 2rem;
 }
 
 #title h1{
