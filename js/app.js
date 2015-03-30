@@ -1,46 +1,68 @@
 $(document).ready(function() {
+
+	// Call stored array
 	var items = JSON.parse(localStorage.getItem('items'));
 	var itemNumber = 1
-	console.log(items);
+
+	// Reload list and itemNumber
+	if (items.length > 0) {
+		itemNumber = reloadList(items, itemNumber);
+	};
 	
+	// Continue list
 	runApp(items, itemNumber);	
 });
 
-function runApp(items, itemNumber) {
-	addItem(items, itemNumber)
-	returnKey()
-	mouseActions()
-	toggleItem(items)
-	removeItem(items)
-	clearList(items, itemNumber)
+function reloadList(items, itemNumber) {
+	for (var i = 0; i <items.length; i++) {
+		addItem(items[i].itemName, itemNumber, items[i].itemClass);
+		items[i].itemId = "item" + itemNumber;
+		itemNumber++;
+	};
+	return itemNumber;
 }
 
-function addItem(items, itemNumber) {
+function addItem(itemName, itemNumber, itemClass) {
+	$('#list').append(
+		'<li value="item' + itemNumber + '" class="' + itemClass + '"><img class="delete-item" src="img/delete-item.png" alt="Delete Item">' +
+		itemName +
+		'<img class="cart" src="img/cart.png" alt="Cart"></li>'
+	);
+}
+
+function runApp(items, itemNumber) {
+	checkInput(items, itemNumber);
+	returnKey();
+	mouseActions();
+	toggleItem(items);
+	removeItem(items);
+	clearList(items, itemNumber);
+}
+
+function checkInput(items, itemNumber) {
 	$('#add-button').on('click', function() {
 		if ($('#new-item').val().trim()==0) {
 			$('#new-item').attr('placeholder', "Please input an item to add to the list");
 			$('#new-item').addClass('list-error')
 		} else {
-			$('#list').append(
-				'<li value="item' + itemNumber + '"><img class="delete-item" src="img/delete-item.png" alt="Delete Item">' +
-				document.getElementById('new-item').value +
-				'<img class="cart" src="img/cart.png" alt="Cart"></li>'
-			);
+			// Add new item to list
+			var itemName = document.getElementById('new-item').value
+			addItem(itemName, itemNumber, "out-cart");
 
 			// Add new item to storage
 			var item = {}
-			item.id = "item" + itemNumber
-			item.name = document.getElementById('new-item').value
-			item.toggle = "out-cart"
-			items.push(item);
-			itemNumber++;
+			item.itemId = "item" + itemNumber
+			item.itemName = itemName
+			item.itemClass = "out-cart"
 
+			items.push(item);
 			updateStorage(items);
 
-			// Reset
+			// Reset input
 			$("#new-item").attr('placeholder', 'Type items here then push Enter on your keyboard');
 			$('#new-item').removeClass('list-error')
 			$('#new-item').val('');
+			itemNumber++;
 		};
 	});
 }
@@ -68,17 +90,16 @@ function toggleItem(items) {
 		// Update item's status in storage
 		var selectedItem = $(this).parent().attr('value');
 		var itemIndex = findIndex(items, selectedItem);
-		if (items[itemIndex].toggle === "out-cart") {
-			items[itemIndex].toggle = "in-cart"
+		if (items[itemIndex].itemClass === "out-cart") {
+			items[itemIndex].itemClass = "in-cart"
 		} else {
-			items[itemIndex].toggle = "out-cart"
+			items[itemIndex].itemClass = "out-cart"
 		}
 		updateStorage(items);
 
-		// Fade item
+		// Update item's class
+		$(this).closest('li').toggleClass('out-cart');
 		$(this).closest('li').toggleClass('in-cart');
-
-		console.log(selectedItem + " now " + items[itemIndex].toggle);
 	});
 }
 
@@ -87,15 +108,11 @@ function removeItem(items) {
 		// Remove item from storage
 		var selectedItem = $(this).parent().attr('value');
 		var itemIndex = findIndex(items, selectedItem);
-		items.splice(itemIndex,1);
+		items.splice(itemIndex, 1);
 		updateStorage(items);
-
-		console.log("Removed " + selectedItem)
 
 		// Remove item from list
 		$(this).parent().remove();
-
-		console.log(items);
 	});
 }
 
@@ -113,9 +130,9 @@ function clearList(items, itemNumber) {
 }
 
 function findIndex(items, selectedItem) {
-	// Search items array using element ids'
+	// Search items array using itemId
 	for (var i = 0; i < items.length; i++) {
-		if (items[i].id === selectedItem) {
+		if (items[i].itemId === selectedItem) {
 			return i;
 		};
 	};
@@ -123,7 +140,5 @@ function findIndex(items, selectedItem) {
 
 function updateStorage(items) {
 	localStorage.setItem('items', JSON.stringify(items));
-	var trial = JSON.parse(localStorage.getItem('items'));
-	console.log(trial);
 }
 
