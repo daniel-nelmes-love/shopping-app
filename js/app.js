@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	// Call stored array
-	vstoredItems = JSON.parse(localStorage.getItem('items'))
+	var storedItems = JSON.parse(localStorage.getItem('items'))
 	if (storedItems === null) {
 		var items = []
 	} else {
