@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	// Call stored array
+	var items = [];
 	var items = JSON.parse(localStorage.getItem('items'));
 	var itemNumber = 1
 
