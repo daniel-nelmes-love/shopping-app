@@ -1,20 +1,21 @@
 $(document).ready(function() {
-	var items = []
-	var itemNumber = items.length + 1
+	var items = JSON.parse(localStorage.getItem('items'));
+	var itemNumber = 1
+	console.log(items);
 	
-	runApp(itemNumber, items);	
+	runApp(items, itemNumber);	
 });
 
-function runApp(itemNumber, items) {
-	addItem(itemNumber, items)
+function runApp(items, itemNumber) {
+	addItem(items, itemNumber)
 	returnKey()
 	mouseActions()
 	toggleItem(items)
 	removeItem(items)
-	clearList(itemNumber, items)
+	clearList(items, itemNumber)
 }
 
-function addItem(itemNumber, items) {
+function addItem(items, itemNumber) {
 	$('#add-button').on('click', function() {
 		if ($('#new-item').val().trim()==0) {
 			$('#new-item').attr('placeholder', "Please input an item to add to the list");
@@ -26,7 +27,7 @@ function addItem(itemNumber, items) {
 				'<img class="cart" src="img/cart.png" alt="Cart"></li>'
 			);
 
-			// Add new item to array
+			// Add new item to storage
 			var item = {}
 			item.id = "item" + itemNumber
 			item.name = document.getElementById('new-item').value
@@ -34,7 +35,7 @@ function addItem(itemNumber, items) {
 			items.push(item);
 			itemNumber++;
 
-			console.log(items);
+			updateStorage(items);
 
 			// Reset
 			$("#new-item").attr('placeholder', 'Type items here then push Enter on your keyboard');
@@ -64,7 +65,7 @@ function mouseActions() {
 
 function toggleItem(items) {
 	$('#list').on('click', '.cart', function() {
-		// Update item's status in array
+		// Update item's status in storage
 		var selectedItem = $(this).parent().attr('value');
 		var itemIndex = findIndex(items, selectedItem);
 		if (items[itemIndex].toggle === "out-cart") {
@@ -72,6 +73,7 @@ function toggleItem(items) {
 		} else {
 			items[itemIndex].toggle = "out-cart"
 		}
+		updateStorage(items);
 
 		// Fade item
 		$(this).closest('li').toggleClass('in-cart');
@@ -82,10 +84,11 @@ function toggleItem(items) {
 
 function removeItem(items) {
 	$('#list').on('click', '.delete-item', function() {
-		// Remove item from array
+		// Remove item from storage
 		var selectedItem = $(this).parent().attr('value');
 		var itemIndex = findIndex(items, selectedItem);
 		items.splice(itemIndex,1);
+		updateStorage(items);
 
 		console.log("Removed " + selectedItem)
 
@@ -96,10 +99,11 @@ function removeItem(items) {
 	});
 }
 
-function clearList(itemNumber, items) {
+function clearList(items, itemNumber) {
 	$('#clear-button').on('click', function() {
-		// Clear array
+		// Clear storage
 		items.splice(0, items.length);
+		updateStorage(items);
 
 		// Clear list
 		$('#list').find('li').remove();
@@ -116,3 +120,10 @@ function findIndex(items, selectedItem) {
 		};
 	};
 }
+
+function updateStorage(items) {
+	localStorage.setItem('items', JSON.stringify(items));
+	var trial = JSON.parse(localStorage.getItem('items'));
+	console.log(trial);
+}
+
