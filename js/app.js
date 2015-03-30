@@ -30,7 +30,7 @@ function addItem(itemNumber, items) {
 			var item = {}
 			item.id = "item" + itemNumber
 			item.name = document.getElementById('new-item').value
-			item.toggle = "On"
+			item.toggle = "notInCart"
 			items.push(item);
 			console.log(items);
 
@@ -61,25 +61,31 @@ function mouseActions() {
 }
 
 function toggleItem(items) {
+
+	
+
 	$('#list').on('click', '.cart', function() {
+		var selectedItem = $(this).parent().attr('value');
+
 		function findIndex(selectedItem) {
 			for (var i = 0; i < items.length; i++) {
-				if (items[i].id = selectedItem) {
-					return i - 1
+				if (items[i].id === selectedItem) {
+					return i;
 				};
 			};
 		}
+		
+		var itemIndex = findIndex(selectedItem);
 
-		var selectedItem = $(this).parent().attr('value');
-		findIndex(selectedItem);
-		console.log(items[findIndex]);
+		console.log("Item " + (itemIndex+1) + " was " + items[itemIndex].toggle);
 
-		//if (items[index].toggle="On") {
-		//	items[index].toggle="Off"
-		//} else {
-		//	items[index].toggle="On"
-		//}
-		//console.log(items(tempItem.toggle));
+		if (items[itemIndex].toggle === "notInCart") {
+			items[itemIndex].toggle = "inCart"
+		} else {
+			items[itemIndex].toggle = "notInCart"
+		}
+
+		console.log("Item " + (itemIndex+1) + " now " +items[itemIndex].toggle);
 
 
 		$(this).closest('li').toggleClass('in-cart');
