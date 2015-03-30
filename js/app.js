@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
 	// Call stored array
-	var items = [];
-	var items = JSON.parse(localStorage.getItem('items'));
+	vstoredItems = JSON.parse(localStorage.getItem('items'))
+	if (storedItems === null) {
+		var items = []
+	} else {
+		var items = storedItems
+	};
 	var itemNumber = 1
 
 	// Reload list and itemNumber
